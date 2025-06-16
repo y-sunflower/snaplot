@@ -12,7 +12,7 @@ By nature, data visualization is an **iterative process**: no one creates the fi
 
 ## How to use
 
-You run the following code as many time as need to save all intermediate plots:
+You run the following code as many time as needed to save all intermediate plots:
 
 ```python
 import matplotlib.pyplot as plt
