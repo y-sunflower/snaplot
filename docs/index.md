@@ -1,4 +1,4 @@
-# `snaplot`: record your plots
+# `snaplot`: record your plot process
 
 `snaplot` is here to help your record your (matplotlib) plotting process, without having to think about it, and do things like:
 
