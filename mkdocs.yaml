@@ -25,10 +25,7 @@ plugins:
 
 nav:
   - Home: index.md
-  - Examples: examples.md
-  - Reference:
-      - reference/add_digit.md
-  - Contributing: contributing.md
+  - Reference: camera.md
 
 extra_css:
   - stylesheets/style.css

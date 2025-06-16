@@ -22,14 +22,8 @@ def test_create_dir(dir_name, extension, frame_duration, n_repeat_last_frame):
     cam.snap(extension=extension, fig=fig)
     cam.snap(extension=extension)
 
-    directory = os.path.join(
-        os.path.expanduser("~"),
-        ".snaplot",
-        dir_name,
-    )
-
     expected_files = {f"0.{extension}", f"1.{extension}", f"2.{extension}"}
-    actual_files = set(os.listdir(directory))
+    actual_files = set(os.listdir(path))
     assert actual_files == expected_files
 
     path_output = os.path.join(
@@ -37,7 +31,7 @@ def test_create_dir(dir_name, extension, frame_duration, n_repeat_last_frame):
         ".snaplot",
         "here.gif",
     )
-    cam.end(
+    cam.stop(
         path_output,
         frame_duration=frame_duration,
         n_repeat_last_frame=n_repeat_last_frame,
