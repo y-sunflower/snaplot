@@ -38,3 +38,4 @@ camera.stop("my_file.gif")
 
 - You can run `Camera()` multiple times without any issues. Unless you set `force_new=True`, it will automatically recognize that you're still recording.
 - Even after calling `camera.stop("file.gif")`, you can keep recording. If you want to save the intermediate GIF, just use a different filename like `camera.stop("file2.gif")`.
+- it (should) work with all the plotting packages based on matplotlib: matplotlib itself, seaborn, plotnine, yellowbrick, etc.
