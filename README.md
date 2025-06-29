@@ -18,7 +18,7 @@ You run the following code as many time as needed to save all intermediate plots
 import matplotlib.pyplot as plt
 from snaplot import Camera
 
-camera = Camera()
+camera = Camera.start()
 
 fig, ax = plt.subplots()
 ax.plot([1,2,3], [1,2,3])
@@ -36,6 +36,6 @@ camera.stop("my_file.gif")
 
 ## Some cool things
 
-- You can run `Camera()` multiple times without any issues. Unless you set `force_new=True`, it will automatically recognize that you're still recording.
+- You can run `Camera.start()` multiple times without any issues. Unless you set `force_new=True`, it will automatically recognize that you're still recording.
 - Even after calling `camera.stop("file.gif")`, you can keep recording. If you want to save the intermediate GIF, just use a different filename like `camera.stop("file2.gif")`.
 - it (should) work with all the plotting packages based on matplotlib: matplotlib itself, seaborn, plotnine, yellowbrick, etc.

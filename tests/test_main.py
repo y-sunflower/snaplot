@@ -11,7 +11,7 @@ from snaplot import Camera
 @pytest.mark.parametrize("extension", ["png", "jpg", "jpeg"])
 @pytest.mark.parametrize("dir_name", ["default", "something", "else"])
 def test_create_dir(dir_name, extension, frame_duration, n_repeat_last_frame):
-    cam = Camera(force_new=True, verbose=False, dir_name=dir_name)
+    cam = Camera.start(force_new=True, verbose=False, dir_name=dir_name)
     path = os.path.join(os.path.expanduser("~"), ".snaplot", dir_name)
     assert os.path.exists(path)
 
@@ -24,7 +24,9 @@ def test_create_dir(dir_name, extension, frame_duration, n_repeat_last_frame):
 
     expected_files = {f"0.{extension}", f"1.{extension}", f"2.{extension}"}
     actual_files = set(os.listdir(path))
+    other_actual_files = set([os.path.basename(file) for file in cam.list_files()])
     assert actual_files == expected_files
+    assert other_actual_files == expected_files
 
     path_output = os.path.join(
         os.path.expanduser("~"),
