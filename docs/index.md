@@ -37,6 +37,8 @@ camera.stop("my_file.gif", frame_duration=300)
 
 ![](my_file.gif)
 
+For more info, check out the [reference page](./camera)
+
 ## Some cool things
 
 - You can run `Camera.start()` multiple times without forgetting previous `camera.snap()`. Unless you set `force_new=True`, it will automatically recognize that you're still recording.
