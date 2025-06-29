@@ -44,4 +44,4 @@ def test_create_dir(dir_name, extension, frame_duration, n_repeat_last_frame):
 
 
 def test_version():
-    assert snaplot.__version__ == "0.0.2"
+    assert snaplot.__version__ == "0.1.0"

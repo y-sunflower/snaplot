@@ -1,7 +1,7 @@
 [project]
 name = "snaplot"
 description = "Record your plot process"
-version = "0.0.2"
+version = "0.1.0"
 license = "MIT"
 license-files = ["LICENSE"]
 keywords = ["matplotlib", "record", "gif", "evolution"]
@@ -13,7 +13,7 @@ requires-python = ">=3.9"
 classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
-    "Development Status :: 3 - Alpha"
+    "Development Status :: 4 - Beta"
 ]
 dependencies = [
     "gifing>=0.1.1",
