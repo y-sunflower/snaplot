@@ -20,7 +20,7 @@ class Camera:
 
     @classmethod
     def start(
-        self,
+        cls,
         force_new: bool = False,
         dir_name: str = "default",
         verbose: bool = True,
@@ -34,28 +34,30 @@ class Camera:
             dir_name (str): Subdirectory name inside ~/.snaplot to store images.
             verbose (bool): If True, enables logging of actions.
         """
-        self.verbose = verbose
-        self.directory = os.path.join(os.path.expanduser("~"), ".snaplot", dir_name)
+        instance = cls()
+        instance.verbose = verbose
+        instance.directory = os.path.join(os.path.expanduser("~"), ".snaplot", dir_name)
 
-        if not os.path.exists(self.directory) or force_new:
-            if self.verbose:
-                print(f"Starting to record at {self.directory}")
-            self.n_images = 0
-            os.makedirs(self.directory, exist_ok=True)
+        if not os.path.exists(instance.directory) or force_new:
+            if instance.verbose:
+                print(f"Starting to record at {instance.directory}")
+            instance.n_images = 0
+            os.makedirs(instance.directory, exist_ok=True)
 
-            # clean up in case user wants to restart
             if force_new:
-                for filename in os.listdir(self.directory):
-                    file_path = os.path.join(self.directory, filename)
+                for filename in os.listdir(instance.directory):
+                    file_path = os.path.join(instance.directory, filename)
                     if os.path.isfile(file_path):
                         os.remove(file_path)
         else:
             file_count = sum(
                 1
-                for entry in os.listdir(self.directory)
-                if os.path.isfile(os.path.join(self.directory, entry))
+                for entry in os.listdir(instance.directory)
+                if os.path.isfile(os.path.join(instance.directory, entry))
             )
-            self.n_images = file_count
+            instance.n_images = file_count
+
+        return instance
 
     def snap(
         self,
@@ -110,11 +112,7 @@ class Camera:
             width = resolution[0]
             height = resolution[1]
 
-        self.file_paths = list()
-        for filename in os.listdir(self.directory):
-            file_path = os.path.join(self.directory, filename)
-            if os.path.isfile(file_path):
-                self.file_paths.append(file_path)
+        self.file_paths = self.list_files()
 
         if self.verbose:
             print(f"Saving {self.n_images} from {self.directory}")
@@ -130,3 +128,15 @@ class Camera:
         )
         gif.set_size((width, height))
         gif.make(path)
+
+    def list_files(self):
+        """
+        Retrieve all current intermediate file paths.
+        """
+        file_paths = list()
+        for filename in os.listdir(self.directory):
+            file_path = os.path.join(self.directory, filename)
+            if os.path.isfile(file_path):
+                file_paths.append(file_path)
+
+        return file_paths

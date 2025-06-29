@@ -21,4 +21,5 @@ env/
 *.zip
 sandbox.*
 *.gif
+!docs/my_file.gif
 !docs/example.gif

@@ -16,17 +16,26 @@ from snaplot import Camera
 
 camera = Camera.start()
 
-plt.plot([1,2,3], [1,2,3]) # first chart
+fig, ax = plt.subplots()
+ax.plot([1, 2, 3], [1, 2, 3])  # first chart
 camera.snap()
 
-plt.plot([1,2,3], [1,2,3], color="red") # second chart
+fig, ax = plt.subplots()
+ax.plot([1, 2, 3], [4, 2, 3], color="red")  # second chart
 camera.snap()
 
-plt.plot([1,2,3], [1,2,3], color="red", lw=3) # third chart
+fig, ax = plt.subplots()
+ax.plot([1, 2, 3], [1, 5, 3], color="green", lw=3)  # third chart
 camera.snap()
 
-camera.stop("my_file.gif")
+fig, ax = plt.subplots()
+ax.plot([5, 2, 4], [2, 3, 3], color="blue", lw=6)  # fourth chart
+camera.snap()
+
+camera.stop("my_file.gif", frame_duration=300)
 ```
+
+![](my_file.gif)
 
 ## Some cool things
 
