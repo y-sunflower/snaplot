@@ -4,8 +4,6 @@
 
 ![](docs/example.gif)
 
-<br><br>
-
 ## Why
 
 By nature, data visualization is an **iterative process**: no one creates the final, perfectly polished version of a graph on the first try. It always takes plenty of **trial and error**. And interestingly, visualizing this process can be quite insightful. That's where snaplot comes in.
