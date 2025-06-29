@@ -43,6 +43,14 @@ For more info, check out the [reference page](https://y-sunflower.github.io/snap
 
 <br><br>
 
+## Installation
+
+```bash
+pip install snaplot
+```
+
+<br><br>
+
 ## Some cool things
 
 - You can run `Camera.start()` multiple times without forgetting previous `camera.snap()`. Unless you set `force_new=True`, it will automatically recognize that you're still recording.

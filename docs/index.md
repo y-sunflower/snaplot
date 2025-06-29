@@ -39,6 +39,12 @@ camera.stop("my_file.gif", frame_duration=300)
 
 For more info, check out the [reference page](./camera)
 
+## Installation
+
+```bash
+pip install snaplot
+```
+
 ## Some cool things
 
 - You can run `Camera.start()` multiple times without forgetting previous `camera.snap()`. Unless you set `force_new=True`, it will automatically recognize that you're still recording.
