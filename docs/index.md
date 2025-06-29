@@ -10,65 +10,26 @@ By nature, data visualization is an **iterative process**: no one creates the fi
 
 ## How to use
 
-=== "1 - Create a camera"
-
-    ```python
-    import matplotlib.pyplot as plt
-    from snaplot import Camera
-
-    camera = Camera()
-    ```
-
-=== "2 - make a first plot"
-
-    ```python
-    plt.plot([1,2,3], [1,2,3])
-
-    camera.snap()
-    ```
-
-=== "3 - a second one"
-
-    ```python
-    plt.plot([1,2,3], [1,2,3], color="red")
-
-    camera.snap()
-    ```
-
-=== "4 - another one"
-
-    ```python
-    plt.plot([1,2,3], [1,2,3], color="red", lw=3)
-
-    camera.snap()
-    ```
-
-=== "5 - Stop recording"
-
-    ```python
-    camera.stop("my_file.gif")
-    ```
-
-## All together
-
-Highlighted lines are those that need to be modified to improve your graph iteratively:
-
-```python hl_lines="6 7"
+```python
 import matplotlib.pyplot as plt
 from snaplot import Camera
 
-camera = Camera()
+camera = Camera.start()
 
-fig, ax = plt.subplots()
-ax.plot([1,2,3], [1,2,3])
-
+plt.plot([1,2,3], [1,2,3]) # first chart
 camera.snap()
 
-# Run this when you're done with your chart
-# camera.stop("my_file.gif")
+plt.plot([1,2,3], [1,2,3], color="red") # second chart
+camera.snap()
+
+plt.plot([1,2,3], [1,2,3], color="red", lw=3) # third chart
+camera.snap()
+
+camera.stop("my_file.gif")
 ```
 
 ## Some cool things
 
-- You can run `Camera()` multiple times without any issues. Unless you set `force_new=True`, it will automatically recognize that you're still recording.
+- You can run `Camera.start()` multiple times without forgetting previous `camera.snap()`. Unless you set `force_new=True`, it will automatically recognize that you're still recording.
 - Even after calling `camera.stop("file.gif")`, you can keep recording. If you want to save the intermediate GIF, just use a different filename like `camera.stop("file2.gif")`.
+- It works with any matplotlib-based plotting library: seaborn, plotnine, etc

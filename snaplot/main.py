@@ -16,19 +16,24 @@ class Camera:
         directory (str): Directory path where images are stored.
         n_images (int): Count of currently saved images.
         file_paths (list): List of saved image file paths.
-
-    Args:
-        force_new (bool): If True, clears the target directory before recording.
-        dir_name (str): Subdirectory name inside ~/.snaplot to store images.
-        verbose (bool): If True, enables logging of actions.
     """
 
-    def __init__(
+    @classmethod
+    def start(
         self,
         force_new: bool = False,
         dir_name: str = "default",
         verbose: bool = True,
     ):
+        """
+        Initiate a `Camera` instance and start to record.
+
+        Args:
+            force_new (bool): If True, re-start the recording from 0 (and 'forget'
+            all previous images).
+            dir_name (str): Subdirectory name inside ~/.snaplot to store images.
+            verbose (bool): If True, enables logging of actions.
+        """
         self.verbose = verbose
         self.directory = os.path.join(os.path.expanduser("~"), ".snaplot", dir_name)
 
