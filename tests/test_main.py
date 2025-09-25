@@ -7,33 +7,50 @@ from snaplot import Camera
 
 
 @pytest.mark.parametrize("n_repeat_last_frame", [1, 5, 20])
-@pytest.mark.parametrize("frame_duration", [100, 10, 500])
+@pytest.mark.parametrize("frame_duration", [100, 10, 200])
 @pytest.mark.parametrize("extension", ["png", "jpg", "jpeg"])
-@pytest.mark.parametrize("dir_name", ["default", "something", "else"])
-def test_create_dir(dir_name, extension, frame_duration, n_repeat_last_frame):
-    cam = Camera.start(force_new=True, verbose=False, dir_name=dir_name)
-    path = os.path.join(os.path.expanduser("~"), ".snaplot", dir_name)
+@pytest.mark.parametrize("verbose", [True, False])
+@pytest.mark.parametrize("record_id", [0, 2, "0", "else"])
+def test_create_dir(record_id, extension, frame_duration, n_repeat_last_frame, verbose):
+    camera = Camera.start(record_id=record_id, force_new=True, verbose=verbose)
+    path = os.path.join(os.path.expanduser("~"), ".snaplot", f"record_{record_id}")
     assert os.path.exists(path)
 
     fig, ax = plt.subplots()
     ax.plot([1, 2, 3], [1, 2, 3])
+    camera.snap(extension=extension)
 
-    cam.snap(extension=extension)
-    cam.snap(extension=extension, fig=fig)
-    cam.snap(extension=extension)
+    fig, ax = plt.subplots()
+    ax.plot([1, 2, 3], [1, 2, 3], color="red")
+    camera.snap(extension=extension, fig=fig)
 
-    expected_files = {f"0.{extension}", f"1.{extension}", f"2.{extension}"}
+    fig, ax = plt.subplots()
+    ax.plot([1, 2, 3], [1, 2, 3], color="red", lw=3)
+    camera.snap(extension=extension, fig=fig)
+
+    fig, ax = plt.subplots()
+    ax.plot([1, 2, 3], [1, 2, 3], color="red", lw=3)
+    ax.spines["top"].set_visible(False)
+    camera.snap(extension=extension, fig=fig)
+
+    expected_files = {
+        f"0.{extension}",
+        f"1.{extension}",
+        f"2.{extension}",
+        f"3.{extension}",
+    }
     actual_files = set(os.listdir(path))
-    other_actual_files = set([os.path.basename(file) for file in cam.list_files()])
+    other_actual_files = set([os.path.basename(file) for file in camera.get_files()])
     assert actual_files == expected_files
     assert other_actual_files == expected_files
 
     path_output = os.path.join(
         os.path.expanduser("~"),
         ".snaplot",
+        f"record_{record_id}",
         "here.gif",
     )
-    cam.stop(
+    camera.stop(
         path_output,
         frame_duration=frame_duration,
         n_repeat_last_frame=n_repeat_last_frame,
