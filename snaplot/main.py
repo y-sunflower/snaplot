@@ -67,7 +67,7 @@ class Camera:
         else:
             if instance.verbose:
                 print(f"Already recording at {instance.directory}")
-            file_count = sum(
+            file_count: int = sum(
                 1
                 for entry in os.listdir(instance.directory)
                 if os.path.isfile(os.path.join(instance.directory, entry))
@@ -94,9 +94,9 @@ class Camera:
         self.extension = extension
 
         if fig is None:
-            fig = plt.gcf()
+            fig: Figure = plt.gcf()
 
-        file_path = os.path.join(self.directory, f"{self.n_images}.{extension}")
+        file_path: str = os.path.join(self.directory, f"{self.n_images}.{extension}")
         fig.savefig(fname=file_path, **kwargs)
         self.n_images += 1
 
@@ -122,14 +122,14 @@ class Camera:
                 the dimensions of the last image in inches and convert them to pixels.
         """
         if resolution == "auto":
-            fig = plt.gcf()
+            fig: Figure = plt.gcf()
             width = fig.get_figwidth() * 96
             height = fig.get_figheight() * 96
         else:
             width = resolution[0]
             height = resolution[1]
-        width = int(width)
-        height = int(height)
+        width: int = int(width)
+        height: int = int(height)
 
         self.file_paths = self.get_files()
 
@@ -139,8 +139,8 @@ class Camera:
         if len(self.file_paths) < 2:
             raise ValueError("Not enough images found (< 2).")
 
-        gif = GIF(
-            self.file_paths,
+        gif: GIF = GIF(
+            file_path=self.file_paths,
             frame_duration=frame_duration,
             n_repeat_last_frame=n_repeat_last_frame,
             verbose=self.verbose,
@@ -163,13 +163,13 @@ class Camera:
 
 def clean_up(record_id: Optional[Union[str, int]] = None):
     if record_id is None:
-        directory = os.path.join(os.path.expanduser("~"), ".snaplot")
+        directory: str = os.path.join(os.path.expanduser("~"), ".snaplot")
         for entry in os.listdir(directory):
-            path = os.path.join(directory, entry)
+            path: str = os.path.join(directory, entry)
             if os.path.isdir(path):
                 shutil.rmtree(path)
     else:
-        directory = os.path.join(
+        directory: str = os.path.join(
             os.path.expanduser("~"),
             ".snaplot",
             f"record_{record_id}",
