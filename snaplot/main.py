@@ -1,4 +1,5 @@
 import os
+import shutil
 
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
@@ -158,3 +159,19 @@ class Camera:
                 file_paths.append(file_path)
 
         return file_paths
+
+
+def clean_up(record_id: Optional[Union[str, int]] = None):
+    if record_id is None:
+        directory = os.path.join(os.path.expanduser("~"), ".snaplot")
+        for entry in os.listdir(directory):
+            path = os.path.join(directory, entry)
+            if os.path.isdir(path):
+                shutil.rmtree(path)
+    else:
+        directory = os.path.join(
+            os.path.expanduser("~"),
+            ".snaplot",
+            f"record_{record_id}",
+        )
+        shutil.rmtree(directory)
