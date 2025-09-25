@@ -29,7 +29,7 @@ class Camera:
     def start(
         cls,
         *,
-        recording_id: int,
+        record_id: Union[int, str],
         force_new: bool = False,
         verbose: bool = True,
     ):
@@ -37,11 +37,11 @@ class Camera:
         Initiate a `Camera` instance and start to record.
 
         Args:
-            recording_id (int): Subdirectory name inside ~/.snaplot to store images.
-                It's only require to tell `snaplot` where to save intermediate
-                files.
+            record_id (int): Id used to make sure `snaplot` does not confuse
+                records with each others.
             force_new (bool): If True, re-start the recording from 0 (and 'forget'
-                all previous images).
+                all previous images). This is useful to avoid accidently delete
+                intermediate images when running `Camera.start()`.
             verbose (bool): If True, enables logging of actions.
         """
         instance = cls()
@@ -49,7 +49,7 @@ class Camera:
         instance.directory = os.path.join(
             os.path.expanduser("~"),
             ".snaplot",
-            f"record_{recording_id}",
+            f"record_{record_id}",
         )
 
         if not os.path.exists(instance.directory) or force_new:
@@ -127,8 +127,10 @@ class Camera:
         else:
             width = resolution[0]
             height = resolution[1]
+        width = int(width)
+        height = int(height)
 
-        self.file_paths = self.list_files()
+        self.file_paths = self.get_files()
 
         if self.verbose:
             print(f"Saving {self.n_images} from {self.directory}")
@@ -145,7 +147,7 @@ class Camera:
         gif.set_size((width, height))
         gif.make(path)
 
-    def list_files(self):
+    def get_files(self):
         """
         Retrieve all current intermediate file paths.
         """
