@@ -42,7 +42,8 @@ fig, ax = plt.subplots()
 ax.plot([5, 2, 4], [2, 3, 3], color="blue", lw=6)   # fourth chart
 camera.snap()
 
-camera.stop("my_file.gif", frame_duration=300) # GIF with 4 images, 300ms/image
+# GIF with 4 images, 300ms/image
+camera.stop("my_file.gif", frame_duration=300)
 ```
 
 ![](docs/my_file.gif)
