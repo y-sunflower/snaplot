@@ -1,7 +1,7 @@
 import os
 
 import matplotlib.pyplot as plt
-import matplotlib as mpl
+from matplotlib.figure import Figure
 from gifing import GIF
 
 from typing import Union, Optional, Dict, Tuple, List
@@ -21,8 +21,9 @@ class Camera:
     @classmethod
     def start(
         cls,
+        *,
+        dir_name: str,
         force_new: bool = False,
-        dir_name: str = "default",
         verbose: bool = True,
     ):
         """
@@ -61,7 +62,7 @@ class Camera:
 
     def snap(
         self,
-        fig: Optional[mpl.figure.Figure] = None,
+        fig: Optional[Figure] = None,
         extension: str = "png",
         **kwargs: Dict,
     ):
