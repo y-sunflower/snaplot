@@ -29,8 +29,8 @@ class Camera:
     @classmethod
     def start(
         cls,
-        *,
         record_id: Union[int, str],
+        *,
         force_new: bool = False,
         verbose: bool = True,
     ):
