@@ -37,7 +37,7 @@ camera.stop("my_file.gif", frame_duration=300)
 
 ![](my_file.gif)
 
-For more info, check out the [reference page](./camera)
+For more info, check out the [reference page](./camera.md)
 
 ## Installation
 
