@@ -1,27 +1,33 @@
 # `snaplot`: record your plot process
 
-`snaplot` is here to help your record your (matplotlib) plotting process, without having to think about it, and do things like:
+`snaplot` is a **Python package** here to help your **record your plotting process**, without having to think about it, and do things like:
 
-![](example.gif)
+![](./example.gif)
 
-## Why
+It's highly inspired by [{camcorder}](https://github.com/thebioengineer/camcorder), an R package that does pretty much the same thing. If you're an R user, check it out!
 
-By nature, data visualization is an **iterative process**: no one creates the final, perfectly polished version of a graph on the first try. It always takes plenty of **trial and error**. And interestingly, visualizing this process can be quite insightful. That's where snaplot comes in.
+## Why?
 
-## How to use
+By nature, data visualization is an **iterative process**: no one creates the final, perfectly polished version of a graph on the first try. It always takes plenty of **trial and error**.
+
+Interestingly, visualizing this process can be quite insightful. That's where `snaplot` comes in.
+
+## How to use?
+
+`snaplot` provides a single class (`Camera`) and is designed to be as easy-to-use as possible.
 
 ```python
 import matplotlib.pyplot as plt
 from snaplot import Camera
 
-camera = Camera.start()
+camera = Camera.start("my_movie")
 
 fig, ax = plt.subplots()
-ax.plot([1, 2, 3], [1, 2, 3])  # first chart
+ax.plot([1, 2, 3], [1, 2, 3])                       # first chart
 camera.snap()
 
 fig, ax = plt.subplots()
-ax.plot([1, 2, 3], [4, 2, 3], color="red")  # second chart
+ax.plot([1, 2, 3], [4, 2, 3], color="red")          # second chart
 camera.snap()
 
 fig, ax = plt.subplots()
@@ -29,13 +35,20 @@ ax.plot([1, 2, 3], [1, 5, 3], color="green", lw=3)  # third chart
 camera.snap()
 
 fig, ax = plt.subplots()
-ax.plot([5, 2, 4], [2, 3, 3], color="blue", lw=6)  # fourth chart
+ax.plot([5, 2, 4], [2, 3, 3], color="blue", lw=6)   # fourth chart
 camera.snap()
 
+# GIF with 4 images, 300ms/image
 camera.stop("my_file.gif", frame_duration=300)
 ```
 
-![](my_file.gif)
+![](./my_file.gif)
+
+In short:
+
+- you initiate a camera with `Camera.start()`
+- you take snapshots with `camera.snap()`
+- you save your video with `camera.stop()`
 
 For more info, check out the [reference page](./camera.md)
 
@@ -47,6 +60,6 @@ pip install snaplot
 
 ## Some cool things
 
-- You can run `Camera.start()` multiple times without forgetting previous `camera.snap()`. Unless you set `force_new=True`, it will automatically recognize that you're still recording.
+- You can run `Camera.start()` multiple times with the same id without forgetting previous `camera.snap()`. Unless you set `force_new=True`, it will automatically recognize that you're still recording.
 - Even after calling `camera.stop("file.gif")`, you can keep recording. If you want to save the intermediate GIF, just use a different filename like `camera.stop("file2.gif")`.
 - It works with any matplotlib-based plotting library: seaborn, plotnine, etc
