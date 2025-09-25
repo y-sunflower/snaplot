@@ -11,6 +11,13 @@ class Camera:
     """
     A class for capturing matplotlib figures and exporting them as a GIF.
 
+    It works with every visualization library based on matplotlib such
+    as seaborn, plotnine, etc, and matplotlib itself.
+
+    Under the hood, it saves all intermediate files on the disk and
+    combine them at the end using the [`gifing`](https://github.com/y-sunflower/gifing)
+    package.
+
     Attributes:
         verbose (bool): If True, prints log messages during execution.
         directory (str): Directory path where images are stored.
@@ -22,7 +29,7 @@ class Camera:
     def start(
         cls,
         *,
-        dir_name: str,
+        recording_id: int,
         force_new: bool = False,
         verbose: bool = True,
     ):
@@ -30,14 +37,20 @@ class Camera:
         Initiate a `Camera` instance and start to record.
 
         Args:
+            recording_id (int): Subdirectory name inside ~/.snaplot to store images.
+                It's only require to tell `snaplot` where to save intermediate
+                files.
             force_new (bool): If True, re-start the recording from 0 (and 'forget'
-            all previous images).
-            dir_name (str): Subdirectory name inside ~/.snaplot to store images.
+                all previous images).
             verbose (bool): If True, enables logging of actions.
         """
         instance = cls()
         instance.verbose = verbose
-        instance.directory = os.path.join(os.path.expanduser("~"), ".snaplot", dir_name)
+        instance.directory = os.path.join(
+            os.path.expanduser("~"),
+            ".snaplot",
+            f"record_{recording_id}",
+        )
 
         if not os.path.exists(instance.directory) or force_new:
             if instance.verbose:
@@ -51,6 +64,8 @@ class Camera:
                     if os.path.isfile(file_path):
                         os.remove(file_path)
         else:
+            if instance.verbose:
+                print(f"Already recording at {instance.directory}")
             file_count = sum(
                 1
                 for entry in os.listdir(instance.directory)
@@ -67,7 +82,7 @@ class Camera:
         **kwargs: Dict,
     ):
         """
-        Capture and save a matplotlib figure to the recording directory.
+        Take a snapshot of your latest plot.
 
         Args:
             fig (matplotlib.figure.Figure, optional): The figure to save. If None,
