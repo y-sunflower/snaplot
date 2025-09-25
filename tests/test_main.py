@@ -1,8 +1,8 @@
 import pytest
 import os
 import matplotlib.pyplot as plt
-from plotnine import ggplot, aes, geom_point
-from plotnine.data import anscombe_quartet
+from plotnine import ggplot, aes
+import pandas as pd
 
 import snaplot
 from snaplot import Camera
@@ -76,16 +76,18 @@ def test_snaplot_plotnine(
     path = os.path.join(os.path.expanduser("~"), ".snaplot", f"record_{record_id}")
     assert os.path.exists(path)
 
-    ggplot(anscombe_quartet, aes(x="x", y="y")) + geom_point()
+    df = pd.DataFrame({"alpha": [1, 2, 3], "beta": [1, 2, 3], "gam ma": [1, 2, 3]})
+
+    ggplot(df, aes(x="alpha", y="beta"))
     camera.snap(extension=extension)
 
-    ggplot(anscombe_quartet, aes(x="x", y="y")) + geom_point()
+    ggplot(df, aes(x="alpha", y="beta"))
     camera.snap(extension=extension)
 
-    ggplot(anscombe_quartet, aes(x="x", y="y")) + geom_point()
+    ggplot(df, aes(x="alpha", y="beta"))
     camera.snap(extension=extension)
 
-    ggplot(anscombe_quartet, aes(x="x", y="y")) + geom_point()
+    ggplot(df, aes(x="alpha", y="beta"))
     camera.snap(extension=extension)
 
     expected_files = {
