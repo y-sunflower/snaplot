@@ -1,10 +1,12 @@
 # `snaplot`: record your plot process
 
-`snaplot` is a **Python package** here to help your **record your plotting process**, without having to think about it, and do things like:
+<img src="https://github.com/JosephBARBIERDARNAL/static/blob/main/python-libs/snaplot/image.png?raw=true" alt="snaplot logo" align="right" width="150px"/>
 
-![](./example.gif)
+`snaplot` is a **Python package** here to help your **record your plotting process**, without having to think about it!
 
 It's highly inspired by [{camcorder}](https://github.com/thebioengineer/camcorder), an R package that does pretty much the same thing. If you're an R user, check it out!
+
+![](./example.gif)
 
 ## Why?
 
@@ -46,7 +48,7 @@ camera.stop("my_file.gif", frame_duration=300)
 
 In short:
 
-- you initiate a camera with `Camera.start()`
+- you initiate a camera with `camera = Camera.start()`
 - you take snapshots with `camera.snap()`
 - you save your video with `camera.stop()`
 
