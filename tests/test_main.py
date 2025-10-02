@@ -4,11 +4,6 @@ import matplotlib.pyplot as plt
 from plotnine import ggplot, aes
 import pandas as pd
 
-import matplotlib
-
-matplotlib.use("Agg")
-
-
 import snaplot
 from snaplot import Camera
 
