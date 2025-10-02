@@ -5,5 +5,5 @@ import matplotlib
 # https://github.com/y-sunflower/snaplot/issues/11
 matplotlib.use("Agg")
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 __all__ = ["Camera"]

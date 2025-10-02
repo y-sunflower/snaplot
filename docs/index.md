@@ -1,4 +1,4 @@
-# `snaplot`: record your plot process
+# `snaplot`: Record and replay every step of your plotting process
 
 <img src="https://github.com/JosephBARBIERDARNAL/static/blob/main/python-libs/snaplot/image.png?raw=true" alt="snaplot logo" align="right" width="150px"/>
 
