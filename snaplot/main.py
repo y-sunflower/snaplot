@@ -151,9 +151,9 @@ class Camera:
         """
         Retrieve all current intermediate file paths.
         """
-        file_paths = list()
+        file_paths: list = list()
         for filename in os.listdir(self.directory):
-            file_path = os.path.join(self.directory, filename)
+            file_path: str = os.path.join(self.directory, filename)
             if os.path.isfile(file_path):
                 file_paths.append(file_path)
 
