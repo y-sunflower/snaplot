@@ -157,4 +157,5 @@ class Camera:
             if os.path.isfile(file_path):
                 file_paths.append(file_path)
 
+        file_paths.sort()
         return file_paths
