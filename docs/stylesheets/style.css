@@ -74,3 +74,24 @@ footer.custom-footer {
 .copyright {
   font-size: 1.4em;
 }
+
+.gif {
+  margin: 0;
+  padding: 0;
+}
+
+.hero {
+  font-size: 1.4em;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin-top: 2em;
+}
+
+.hero > h1 {
+  margin-bottom: 0;
+}
+
+.snaplot {
+  font-size: 1.2em !important;
+}

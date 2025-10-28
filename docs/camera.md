@@ -27,4 +27,4 @@ camera.snap()
 camera.stop("my_file.gif", frame_duration=300)
 ```
 
-![](my_file.gif)
+![](output.gif)

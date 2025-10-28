@@ -21,7 +21,7 @@ env/
 *.zip
 sandbox.*
 *.gif
-!docs/my_file.gif
+!docs/output.gif
 !docs/example.gif
 scripts/release.sh
 sandbox/
