@@ -13,6 +13,11 @@ theme:
   icon:
     repo: fontawesome/brands/github
 
+watch:
+  - snaplot
+  - docs
+  - overrides
+
 plugins:
   - search
   - mkdocstrings:

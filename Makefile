@@ -1,8 +1,5 @@
 .PHONY: all
 
-readme:
-	quarto render docs/README.qmd --output-dir ..
-
 coverage:
 	uv run coverage run --source=snaplot -m pytest
 	uv run coverage report -m

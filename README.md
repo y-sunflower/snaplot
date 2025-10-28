@@ -28,27 +28,59 @@ from snaplot import Camera
 
 camera = Camera.start("my_movie")
 
+# Step 1 — basic line
 fig, ax = plt.subplots()
-ax.plot([1, 2, 3], [1, 2, 3])                       # first chart
+ax.plot([1, 2, 3], [1, 2, 3])
 camera.snap()
 
+# Step 2 — change color
 fig, ax = plt.subplots()
-ax.plot([1, 2, 3], [4, 2, 3], color="red")          # second chart
+ax.plot([1, 2, 3], [1, 2, 3], color="red")
 camera.snap()
 
+# Step 3 — increase line width
 fig, ax = plt.subplots()
-ax.plot([1, 2, 3], [1, 5, 3], color="green", lw=3)  # third chart
+ax.plot([1, 2, 3], [1, 2, 3], color="red", lw=5)
 camera.snap()
 
+# Step 4 — add marker
 fig, ax = plt.subplots()
-ax.plot([5, 2, 4], [2, 3, 3], color="blue", lw=6)   # fourth chart
+ax.plot([1, 2, 3], [1, 2, 3], color="red", lw=5, marker="o")
 camera.snap()
 
-# GIF with 4 images, 300ms/image
-camera.stop("my_file.gif", frame_duration=300)
+# Step 5 — change marker size
+fig, ax = plt.subplots()
+ax.plot([1, 2, 3], [1, 2, 3], color="red", lw=5, marker="o", markersize=15)
+camera.snap()
+
+# Step 6 — add legend
+fig, ax = plt.subplots()
+ax.plot([1, 2, 3], [1, 2, 3], color="red", lw=5, marker="o", markersize=15, label="cookies")
+ax.legend()
+camera.snap()
+
+# Step 7 — change axis limits
+fig, ax = plt.subplots()
+ax.plot([1, 2, 3], [1, 2, 3], color="red", lw=5, marker="o", markersize=15, label="cookies")
+ax.set_xlim(0, 4)
+ax.set_ylim(0, 4)
+ax.legend()
+camera.snap()
+
+# Step 8 — add title
+fig, ax = plt.subplots()
+ax.plot([1, 2, 3], [1, 2, 3], color="red", lw=5, marker="o", markersize=15, label="cookies")
+ax.set_xlim(0, 4)
+ax.set_ylim(0, 4)
+ax.legend()
+ax.set_title("Final Look")
+camera.snap()
+
+# 8 images, 300ms/image
+camera.stop("output.gif", frame_duration=300)
 ```
 
-![](docs/my_file.gif)
+![](docs/output.gif)
 
 In short:
 
