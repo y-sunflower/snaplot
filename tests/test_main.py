@@ -118,4 +118,4 @@ def test_snaplot_plotnine(
 
 
 def test_version():
-    assert snaplot.__version__ == "0.2.1"
+    assert snaplot.__version__ == "0.2.2"

@@ -1,10 +1,10 @@
 [project]
 name = "snaplot"
 description = "Record and replay every step of your plotting process"
-version = "0.2.1"
+version = "0.2.2"
 license = "MIT"
 license-files = ["LICENSE"]
-keywords = ["matplotlib", "record", "gif", "evolution"]
+keywords = ["matplotlib", "record", "gif", "evolution", "plotnine", "seaborn"]
 authors = [
   { name="Joseph Barbier", email="joseph.barbierdarnal@gmail.com" },
 ]

@@ -65,7 +65,9 @@ class Camera:
                         os.remove(file_path)
         else:
             if instance.verbose:
-                print(f"Already recording at {instance.directory}")
+                print(
+                    f"Already recording at {instance.directory} ({len(instance.get_files())} images yet)"
+                )
             file_count: int = sum(
                 1
                 for entry in os.listdir(instance.directory)
